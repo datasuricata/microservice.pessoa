@@ -26,39 +26,35 @@ namespace Person.Services.Core {
 
         public async Task<Pessoa> PorId(string id) {
             return await _repoPessoa.PorId(true, id,
+                i => i.Usuario,
+                i => i.Empresa,
+                i => i.Conjuge,
                 i => i.Enderecos,
-                i => i.Enderecos.Select(s => s.Cidade),
-                i => i.Enderecos.Select(s => s.Estado),
                 i => i.Documentos);
         }
 
         public async Task<Pessoa> PorDocumento(string param) {
             return await _repoPessoa.Por(true, x => x.Documentos.Any(a => a.Dados == param.CleanFormat()),
+                i => i.Usuario,
+                i => i.Empresa,
+                i => i.Conjuge,
                 i => i.Enderecos,
-                i => i.Enderecos.Select(s => s.Cidade),
-                i => i.Enderecos.Select(s => s.Estado),
                 i => i.Documentos);
         }
 
         public async Task<IEnumerable<Pessoa>> Like(string param) {
             return await _repoPessoa.Queryable(true,
+                i => i.Usuario,
+                i => i.Empresa,
+                i => i.Conjuge,
                 i => i.Enderecos,
-                i => i.Enderecos.Select(s => s.Cidade),
-                i => i.Enderecos.Select(s => s.Estado),
                 i => i.Documentos)
-                .Where(x => !x.Deletado)
-                .Where(x => EF.Functions.Like(x.Nome, $"%{param}%"))
-                .Where(x => EF.Functions.Like(x.Profissao, $"%{param}%"))
-                .Where(x => EF.Functions.Like(x.Telefone, $"%{param}%"))
+                .Where(x => EF.Functions.Like(x.Nome, $"%{param}%") || EF.Functions.Like(x.Profissao, $"%{param}%"))
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Pessoa>> ListarPorIds(IEnumerable<string> Ids) {
-            return await _repoPessoa.ListarPor(true, x => Ids.Any(a => a == x.Id),
-                i => i.Enderecos,
-                i => i.Enderecos.Select(s => s.Cidade),
-                i => i.Enderecos.Select(s => s.Estado),
-                i => i.Documentos);
+            return await _repoPessoa.ListarPor(true, x => Ids.Any(a => a == x.Id));
         }
 
         public async Task<IEnumerable<Pessoa>> Listar() {

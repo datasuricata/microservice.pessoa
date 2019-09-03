@@ -20,7 +20,6 @@ namespace Person.Arguments.Response {
         public Estado Estado { get; set; }
 
         public string PessoaId { get; set; }
-        public PessoaResponse Pessoa { get; set; }
 
         #region - casting -
 
@@ -37,7 +36,6 @@ namespace Person.Arguments.Response {
                 PessoaId = v.PessoaId,
                 Principal = v.Principal,
                 Tipo = v.Tipo.EnumDisplay(),
-                Pessoa = (PessoaResponse)v.Pessoa,
             };
         }
 

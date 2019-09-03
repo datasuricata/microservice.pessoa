@@ -41,7 +41,9 @@ namespace Person.Services.Core {
         }
 
         public async Task<Endereco> PorCEP(string param) {
-            return await _repoEndereco.Por(true, x => x.CEP == param);
+            return await _repoEndereco.Por(true, x => x.CEP == param,
+                i => i.Cidade,
+                i => i.Estado);
         }
 
         public async Task<IEnumerable<Endereco>> Listar() {

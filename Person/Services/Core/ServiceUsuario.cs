@@ -40,12 +40,7 @@ namespace Person.Services.Core {
         }
 
         public async Task<Usuario> PorId(string id) {
-            return await _repoUsuario.PorId(true, id,
-                i => i.Pessoa,
-                i => i.Pessoa.Enderecos,
-                i => i.Pessoa.Enderecos.Select(s => s.Cidade),
-                i => i.Pessoa.Enderecos.Select(s => s.Estado),
-                i => i.Pessoa.Documentos);
+            return await _repoUsuario.PorId(true, id);
         }
 
         public async Task<IEnumerable<Usuario>> ListarUsuarios() {

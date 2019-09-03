@@ -10,9 +10,7 @@ namespace Person.Arguments.Response {
         public string Email { get; set; }
         public string Responsavel { get; set; }
         public string CPFResponsavel { get; set; }
-
         public string PessoaId { get; set; }
-        public PessoaResponse Pessoa { get; set; }
 
         #region - casting -
 
@@ -24,7 +22,6 @@ namespace Person.Arguments.Response {
                 Email = v.Email,
                 InscricaoEstadual = v.InscricaoEstadual,
                 Nome = v.Nome,
-                Pessoa = (PessoaResponse)v.Pessoa,
                 PessoaId = v.PessoaId,
                 Responsavel = v.Responsavel,
                 Telefone = v.Telefone,

@@ -9,7 +9,6 @@ namespace Person.Arguments.Response {
         public string ImagemUri { get; set; }
         public string Tipo { get; set; }
         public bool Aprovado { get; set; }
-        public PessoaResponse Pessoa { get; set; }
 
 
         public static explicit operator DocumentoResponse(Documento v) {
@@ -19,7 +18,6 @@ namespace Person.Arguments.Response {
                 Dados = v.Dados,
                 ImagemUri = v.ImagemUri,
                 Tipo = v.Tipo.EnumDisplay(),
-                Pessoa = (PessoaResponse)v.Pessoa,
             };
         }
     }

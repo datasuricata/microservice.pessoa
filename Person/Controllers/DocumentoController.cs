@@ -27,15 +27,15 @@ namespace Person.Controllers {
             return Result((DocumentoResponse)result);
         }
 
-        [HttpGet("porPessoa/{id}")]
-        public async Task<IActionResult> PorPessoa(string id) {
-            var result = await _service.PorPessoa(id);
-            return Result((DocumentoResponse)result);
-        }
-
         [HttpGet("listar")]
         public async Task<IActionResult> Listar() {
             var result = await _service.Listar();
+            return Result(result.ToList().ConvertAll(c => (DocumentoResponse)c));
+        }
+
+        [HttpGet("listarPorPessoa/{id}")]
+        public async Task<IActionResult> PorPessoa(string id) {
+            var result = await _service.ListarPorPessoa(id);
             return Result(result.ToList().ConvertAll(c => (DocumentoResponse)c));
         }
 

@@ -46,8 +46,8 @@ namespace Person.Controllers {
             return Result(result.ToList().ConvertAll(c => (PessoaResponse)c));
         }
 
-        [HttpGet("listar/porIds")]
-        public async Task<IActionResult> ListarIds(IEnumerable<string> ids) {
+        [HttpPost("listar/porIds")]
+        public async Task<IActionResult> ListarIds([FromBody]IEnumerable<string> ids) {
             var result = await _service.ListarPorIds(ids);
             return Result(result.ToList().ConvertAll(c => (PessoaResponse)c));
         }

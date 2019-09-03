@@ -27,8 +27,8 @@ namespace Person.Services.Core {
             return await _repoDocumento.PorId(true, id, i => i.Pessoa);
         }
 
-        public async Task<Documento> PorPessoa(string id) {
-            return await _repoDocumento.Por(true, x => x.PessoaId == id, i => i.Pessoa);
+        public async Task<IEnumerable<Documento>> ListarPorPessoa(string id) {
+            return await _repoDocumento.ListarPor(true, x => x.PessoaId == id, i => i.Pessoa);
         }
 
         public async Task<IEnumerable<Documento>> Listar() {

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Person.Services.Core.Interfaces {
     public interface IServiceDocumento {
         Task<Documento> PorId(string id);
-        Task<Documento> PorPessoa(string id);
 
         Task<IEnumerable<Documento>> Listar();
+        Task<IEnumerable<Documento>> ListarPorPessoa(string id);
         Task<IEnumerable<Documento>> ListarPorTipo(TipoDocumento tipo);
 
         Task Registrar(DocumentoRequest param);

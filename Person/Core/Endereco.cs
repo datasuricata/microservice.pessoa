@@ -12,7 +12,7 @@ namespace Person.Core {
         public bool Principal { get; set; }
 
         public int Numero { get; private set; }
-        public int Complemento { get; private set; }
+        public int? Complemento { get; private set; }
 
         public string Logradouro { get; private set; }
         public string Bairro { get; private set; }
@@ -32,7 +32,7 @@ namespace Person.Core {
         protected Endereco() {
         }
 
-        public Endereco(TipoConstrucao tipo, bool principal, int numero, int complemento, string logradouro, string bairro, string cEP) {
+        public Endereco(TipoConstrucao tipo, bool principal, int numero, int? complemento, string logradouro, string bairro, string cEP) {
             Tipo = tipo;
             Principal = principal;
             Numero = numero;
@@ -51,7 +51,7 @@ namespace Person.Core {
             Tipo = tipo;
         }
 
-        public void Atualizar(TipoConstrucao tipo, bool principal, int numero, int complemento, string logradouro, string bairro, string cEP) {
+        public void Atualizar(TipoConstrucao tipo, bool principal, int numero, int? complemento, string logradouro, string bairro, string cEP) {
             Tipo = tipo;
             Principal = principal;
             Numero = numero;

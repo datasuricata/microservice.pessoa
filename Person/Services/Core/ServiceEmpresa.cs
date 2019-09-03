@@ -48,7 +48,7 @@ namespace Person.Services.Core {
         }
 
         public async Task Atualizar(EmpresaRequest param) {
-            var empresa = await _repoEmpresa.PorId(false, param.Id);
+            var empresa = await _repoEmpresa.PorId(false, param.Id, i => i.Pessoa);
 
             empresa.Atualizar(param.Nome, param.InscricaoEstadual, param.Telefone, 
                 param.Celular, param.Email, param.Responsavel, param.CPFResponsavel);

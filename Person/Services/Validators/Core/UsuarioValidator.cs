@@ -18,12 +18,12 @@ namespace Person.Services.Validators.Core {
                 .EmailAddress().WithMessage("E-mail inválido.");
         }
 
-        public bool ContainSpaces(string login) {
-            return login.Contains(" ");
+        public bool ContainSpaces(string value) {
+            return !value.Contains(" ");
         }
 
-        public bool ContainSpecial(string login) {
-            return new Regex("^[a-zA-Z0-9 ]*$").IsMatch(login);
+        public bool ContainSpecial(string value) {
+            return !new Regex("^[a-zA-Z0-9 ]*$").IsMatch(value);
         }
     }
 }

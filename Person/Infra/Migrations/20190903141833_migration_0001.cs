@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Person.Infra.Migrations
 {
-    public partial class migration_001 : Migration
+    public partial class migration_0001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,7 +179,7 @@ namespace Person.Infra.Migrations
                     Tipo = table.Column<int>(nullable: false),
                     Principal = table.Column<bool>(nullable: false),
                     Numero = table.Column<int>(nullable: false),
-                    Complemento = table.Column<int>(nullable: false),
+                    Complemento = table.Column<int>(nullable: true),
                     Logradouro = table.Column<string>(nullable: true),
                     Bairro = table.Column<string>(nullable: true),
                     CEP = table.Column<string>(nullable: true),

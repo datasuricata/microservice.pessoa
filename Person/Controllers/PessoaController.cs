@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Person.Arguments.Request;
 using Person.Arguments.Response;
 using Person.Controllers.Base;
+using Person.Core.Enums;
 using Person.Services.Core.Interfaces;
 using Person.Services.Helpers;
 using System.Collections.Generic;
@@ -72,6 +73,12 @@ namespace Person.Controllers {
         [HttpPut("atualizar/conjuge")]
         public async Task<IActionResult> AtualizarConjuge([FromBody]PessoaRequest param) {
             await _service.AtualizarConjuge(param.InjectAccount(LoggedLess, nameof(param.ProprietarioId)));
+            return Result(new { Message = "Atualizado." });
+        }
+
+        [HttpPut("etapa/{id}")]
+        public async Task<IActionResult> Etapa(string id, [FromBody]EtapaAtual param) {
+            await _service.TrocarEtapa(id, param);
             return Result(new { Message = "Atualizado." });
         }
     }

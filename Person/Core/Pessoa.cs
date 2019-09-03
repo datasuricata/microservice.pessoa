@@ -37,7 +37,7 @@ namespace Person.Core {
         protected Pessoa() {
         }
 
-        public Pessoa(string nome, string profissao, string telefone, EstadoCivil estadoCivil, EtapaAtual etapa, TipoPessoa tipo, TipoSexo sexo, DateTime dataNascimento, string usuarioId) {
+        public Pessoa(string nome, string profissao, string telefone, EstadoCivil estadoCivil, EtapaAtual etapa, TipoPessoa tipo, TipoSexo sexo, DateTime dataNascimento) {
             Nome = nome;
             Profissao = profissao;
             Telefone = telefone;
@@ -46,7 +46,6 @@ namespace Person.Core {
             Tipo = tipo;
             Sexo = sexo;
             DataNascimento = dataNascimento;
-            UsuarioId = usuarioId;
         }
 
         #endregion

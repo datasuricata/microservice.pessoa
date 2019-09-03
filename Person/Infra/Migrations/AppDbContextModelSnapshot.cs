@@ -121,7 +121,7 @@ namespace Person.Infra.Migrations
 
                     b.Property<string>("CidadeId");
 
-                    b.Property<int>("Complemento");
+                    b.Property<int?>("Complemento");
 
                     b.Property<DateTimeOffset?>("CriadoEm");
 

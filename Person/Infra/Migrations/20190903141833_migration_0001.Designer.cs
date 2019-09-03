@@ -10,8 +10,8 @@ using Person.Infra;
 namespace Person.Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190830182251_migration_001")]
-    partial class migration_001
+    [Migration("20190903141833_migration_0001")]
+    partial class migration_0001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,7 +123,7 @@ namespace Person.Infra.Migrations
 
                     b.Property<string>("CidadeId");
 
-                    b.Property<int>("Complemento");
+                    b.Property<int?>("Complemento");
 
                     b.Property<DateTimeOffset?>("CriadoEm");
 

@@ -6,8 +6,8 @@ namespace Person.Arguments.Request {
     public class PessoaRequest {
 
         public string UsuarioId { get; set; }
+
         public string Nome { get; set; }
-        public string Email { get; set; }
         public string Profissao { get; set; }
         public string Telefone { get; set; }
 

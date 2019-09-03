@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Person.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,27 @@ namespace Person.Infra.Seeder {
 
             using (var context = new AppDbContext(service.GetRequiredService<DbContextOptions<AppDbContext>>())) {
 
-                //if (!context.Usuarios.Any()) {
+                if (!context.Usuarios.Any()) {
 
-                //    var pass = "123456";
+                    var estado = new Estado("Paraná", "PR");
 
-                //    var u9999 = new Usuario("root", "xCF2zdWcmfQBDZpF", "root@autotech.com"); u9999.SetType(UserType.Root);
-                //    var u0001 = new Usuario("operator", pass, "operator@autotech.com"); u0001.SetType(UserType.Operator);
-                //    context.Users.AddRange(u9999, u0001);
+                    var usuario = new Usuario("root", "xCF2zdWcmfQBDZpF", "root@autotech.com") {
+                        Pessoa = new Pessoa("Master", "Admin System", "41998623719", Core.Enums.EstadoCivil.Casado, Core.Enums.EtapaAtual.Aprovado, Core.Enums.TipoPessoa.PJ, Core.Enums.TipoSexo.M, new DateTime(1994, 09, 22)) {
+                            Empresa = new Empresa("Data Suricata", "0000", "41998623719", "41998623719", "lucas.moraes.dev@gmail.com", "nobody", null),
+                            Documentos = new List<Documento>() { new Documento("28.010.014/0001-05", "https://www.google.com.br", Core.Enums.TipoDocumento.CNPJ) },
+                            Enderecos = new List<Endereco>() { new Endereco(Core.Enums.TipoConstrucao.Comercial, true, 10, 20, "Av Digital Hacking", "Skynet", "00000000") {
+                                Estado = estado,
+                                Cidade = new Cidade("Curitiba", true) {
+                                    Estado = estado,
+                                },
+                            }}
+                        }
+                    };
 
-                //    var p9999 = new Pessoa("Ninja das Sombras", "GM master virtual pica das galaxias", new DateTime(1994, 09, 22), EstagioAtual.Aproved, u9999.Id);
-                //    var p0001 = new Pessoa("Operador AutoTech", "Operador de Sistemas", DateTime.Now, EstagioAtual.Aproved, u0001.Id);
-                //    context.People.AddRange(p9999, p0001);
+                    usuario.DefinirTipo(Core.Enums.TipoUsuario.Root);
 
-                //    var a9999 = new Endereco(TipoConstrucao.Commercial, 10, 20, "Av Digital Hacking", "Alamo", "Skynet", "Shadow", "Cloud", "00000000", p9999.Id);
-                //    var a0001 = new Endereco(TipoConstrucao.Commercial, 10, 20, "Av Digital Hacking", "Alamo", "Skynet", "Shadow", "Cloud", "00000000", p0001.Id);
-                //    context.Addresses.AddRange(a9999, a0001);
-
-                //    var d9999 = new Documento("000000", "https://www.google.com.br/", TipoDocumento.Undefined, p9999.Id);
-                //    var d0001 = new Documento("000000", "https://www.google.com.br/", TipoDocumento.Undefined, p0001.Id);
-                //    context.Documents.AddRange(d9999, d0001);
-                //}
+                    context.Usuarios.Add(usuario);
+                }
 
                 await context.SaveChangesAsync();
             }

@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Person.Arguments.Request {
+﻿namespace Person.Arguments.Request {
     public class EstadoRequest {
+        public string Id { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
-
-        [JsonIgnore]
-        public string Id { get; set; }
     }
 }

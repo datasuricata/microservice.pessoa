@@ -80,7 +80,7 @@ namespace Person.Services.Core {
 
         public async Task Atualizar(UsuarioRequest param) {
 
-            var id = param.UsuarioId ?? param.ProprietarioId;
+            var id = param.Id ?? param.ProprietarioId;
 
             var usuario = await _repoUsuario.PorId(false, id);
 

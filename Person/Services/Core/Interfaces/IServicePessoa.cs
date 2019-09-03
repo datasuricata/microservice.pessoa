@@ -1,10 +1,12 @@
 ﻿using Person.Arguments.Request;
 using Person.Core;
+using Person.Core.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Person.Services.Core.Interfaces {
     public interface IServicePessoa {
+
         Task<Pessoa> PorId(string id);
         Task<Pessoa> PorDocumento(string param);
 
@@ -17,5 +19,7 @@ namespace Person.Services.Core.Interfaces {
 
         Task AtualizarPessoa(PessoaRequest param);
         Task AtualizarConjuge(PessoaRequest param);
+
+        Task TrocarEtapa(string id, EtapaAtual etapa);
     }
 }

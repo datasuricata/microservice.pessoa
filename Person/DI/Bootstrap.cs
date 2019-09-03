@@ -30,6 +30,9 @@ namespace Person.DI {
 
             services.AddScoped(typeof(IServiceUsuario), typeof(ServiceUsuario));
             services.AddScoped(typeof(IServicePessoa), typeof(ServicePessoa));
+            services.AddScoped(typeof(IServiceEmpresa), typeof(ServiceEmpresa));
+            services.AddScoped(typeof(IServiceEndereco), typeof(ServiceEndereco));
+            services.AddScoped(typeof(IServiceDocumento), typeof(ServiceDocumento));
 
             #endregion
         }

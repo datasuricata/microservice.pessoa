@@ -70,7 +70,9 @@ namespace Person.Services.Core {
             var id = param.UsuarioId ?? param.ProprietarioId;
             var pessoa = new Pessoa(param.Nome, param.Profissao,
                 param.Telefone, param.EstadoCivil, EtapaAtual.Pendente,
-                param.Tipo, param.Sexo, param.DataNascimento, id);
+                param.Tipo, param.Sexo, param.DataNascimento) {
+                UsuarioId = id
+            };
 
             _notify.Validate(pessoa, new PessoaValidator());
             await _repoPessoa.Registrar(pessoa);
@@ -83,7 +85,7 @@ namespace Person.Services.Core {
 
             pessoa.Conjuge = new Pessoa(param.Nome, param.Profissao,
                 param.Telefone, param.EstadoCivil, EtapaAtual.Aprovado,
-                param.Tipo, param.Sexo, param.DataNascimento, null);
+                param.Tipo, param.Sexo, param.DataNascimento);
 
             // todo validate ...
             _repoPessoa.Atualizar(pessoa);
@@ -92,9 +94,8 @@ namespace Person.Services.Core {
         public async Task AtualizarPessoa(PessoaRequest param) {
 
             var id = param.UsuarioId ?? param.ProprietarioId;
-
             var pessoa = await _repoPessoa.Por(false, x => x.Id == id || x.UsuarioId == id,
-                x => x.Documentos);
+                i => i.Usuario);
 
             pessoa.AtualizarPessoa(param.Nome, param.Profissao, param.Telefone,
                 param.EstadoCivil, param.Tipo, param.Sexo, param.DataNascimento);
@@ -109,12 +110,18 @@ namespace Person.Services.Core {
 
             var id = param.UsuarioId ?? param.ProprietarioId;
             var pessoa = await _repoPessoa.Por(false, x => x.Id == id || x.UsuarioId == id,
-                x => x.Conjuge);
+                i => i.Usuario);
 
             pessoa.Conjuge.AtualizarConjuge(param.Nome, param.Profissao, param.Telefone,
                 param.EstadoCivil, param.Tipo, param.Sexo, param.DataNascimento);
 
             // todo validate ...
+            _repoPessoa.Atualizar(pessoa);
+        }
+
+        public async Task TrocarEtapa(string id, EtapaAtual etapa) {
+            var pessoa = await _repoPessoa.Por(false, x => x.Id == id);
+            pessoa.DefinirEtapa(etapa);
             _repoPessoa.Atualizar(pessoa);
         }
     }

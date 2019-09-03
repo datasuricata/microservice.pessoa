@@ -4,6 +4,7 @@ using Person.Arguments.Request;
 using Person.Arguments.Response;
 using Person.Controllers.Base;
 using Person.Services.Core.Interfaces;
+using Person.Services.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -51,7 +52,7 @@ namespace Person.Controllers {
 
         [HttpPost("registrar/endereco")]
         public async Task<IActionResult> RegistrarEndereco([FromBody]EnderecoRequest param) {
-            await _service.RegistrarEndereco(param);
+            await _service.RegistrarEndereco(param.InjectAccount(LoggedLess, nameof(param.ProprietarioId)));
             return Result(new { Message = "Registrado." });
         }
 
@@ -69,7 +70,7 @@ namespace Person.Controllers {
 
         [HttpPut("atualizar/endereco")]
         public async Task<IActionResult> AtualizarEndereco([FromBody]EnderecoRequest param) {
-            await _service.AtualizarEndereco(param);
+            await _service.AtualizarEndereco(param.InjectAccount(LoggedLess, nameof(param.ProprietarioId)));
             return Result(new { Message = "Atualizado." });
         }
 

@@ -10,7 +10,7 @@ namespace Person.Arguments.Response {
         public bool Principal { get; set; }
 
         public int Numero { get; set; }
-        public int Complemento { get; set; }
+        public int? Complemento { get; set; }
 
         public string Logradouro { get; set; }
         public string Bairro { get; set; }

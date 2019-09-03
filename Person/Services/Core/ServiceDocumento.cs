@@ -5,11 +5,9 @@ using Person.Infra.Persistence;
 using Person.Infra.Persistence.Specs;
 using Person.Services.Base;
 using Person.Services.Core.Interfaces;
-using Person.Services.Helpers;
 using Person.Services.Validators.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Person.Services.Core {
@@ -53,7 +51,7 @@ namespace Person.Services.Core {
         }
 
         public async Task Atualizar(DocumentoRequest param) {
-            var documento = await _repoDocumento.PorId(false, param.Id);
+            var documento = await _repoDocumento.PorId(false, param.Id, i => i.Pessoa);
             documento.Atualizar(param.Dados, param.ImagemUri, param.Tipo);
 
             _notify.Validate(documento, new DocumentoValidator());

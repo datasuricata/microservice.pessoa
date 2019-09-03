@@ -6,7 +6,6 @@ using Person.Controllers.Base;
 using Person.Core.Enums;
 using Person.Services.Core.Interfaces;
 using Person.Services.Helpers;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

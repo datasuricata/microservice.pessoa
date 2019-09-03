@@ -108,7 +108,7 @@ namespace Person.Services.Core {
 
 
         public async Task AtualizarEndereco(EnderecoRequest param) {
-            var endereco = await _repoEndereco.PorId(false, param.Id);
+            var endereco = await _repoEndereco.PorId(false, param.Id, i => i.Pessoa);
 
             endereco.Atualizar(param.Tipo, param.Principal, param.Numero, 
                 param.Complemento, param.Logradouro, param.Bairro, param.CEP);

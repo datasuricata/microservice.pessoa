@@ -11,5 +11,6 @@ namespace Person.Core.Notifications.Events {
         void Validate<T>(T model, AbstractValidator<T> validator);
         bool IsValid { get; }
         IEnumerable<Notification> GetNotifications();
+
     }
 }

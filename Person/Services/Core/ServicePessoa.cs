@@ -64,6 +64,7 @@ namespace Person.Services.Core {
         public async Task RegistrarPessoa(PessoaRequest param) {
 
             var id = param.UsuarioId ?? param.ProprietarioId;
+
             var pessoa = new Pessoa(param.Nome, param.Profissao,
                 param.Telefone, param.EstadoCivil, EtapaAtual.Pendente,
                 param.Tipo, param.Sexo, param.DataNascimento) {
